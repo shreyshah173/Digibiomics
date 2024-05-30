@@ -1,10 +1,17 @@
-// src/components/Chatbox.js
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { IoMdSend } from "react-icons/io";
 
 function Chatbox() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const chatContainerRef = useRef(null);
+
+  useEffect(() => {
+    // Scroll to the bottom of the chat container whenever messages update
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const handleSendMessage = () => {
     if (input.trim()) {
@@ -36,7 +43,7 @@ function Chatbox() {
       <div>
         <h2 className="text-lg font-bold mb-2">DigibiomicsAi</h2>
         <h3 className="text-sm text-gray-600 mb-4">Talk with AI</h3>
-        <div className="flex flex-col space-y-2 mb-4 overflow-y-auto max-h-[50vh]">
+        <div ref={chatContainerRef} className="flex flex-col space-y-2 mb-4 overflow-y-auto max-h-[50vh]">
           {messages.map((message, index) => (
             <div
               key={index}
