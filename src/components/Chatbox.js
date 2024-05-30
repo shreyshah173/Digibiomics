@@ -41,14 +41,14 @@ function Chatbox() {
   return (
     <div className="w-80 min-h-[70vh] mr-2 bg-white p-4 border border-gray-300 rounded-lg shadow-lg flex flex-col justify-between">
       <div>
-        <h2 className="text-lg font-bold mb-2">DigibiomicsAi</h2>
+        <h2 className="text-xl font-semibold text-blue-700 mb-2">DigibiomicsAi</h2>
         <h3 className="text-sm text-gray-600 mb-4">Talk with AI</h3>
         <div ref={chatContainerRef} className="flex flex-col space-y-2 mb-4 overflow-y-auto max-h-[50vh]">
           {messages.map((message, index) => (
             <div
               key={index}
               className={`p-2 rounded-lg ${
-                message.isUser ? 'bg-blue-100 self-end' : 'bg-gray-100 self-start'
+                message.isUser ? 'bg-blue-100 self-end' : 'bg-gray-200 self-start'
               }`}
             >
               {message.text}
@@ -62,12 +62,12 @@ function Chatbox() {
           value={input}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
-          className="flex-1 p-2 border border-gray-300 rounded-lg pr-10"
+          className="flex-1 p-2 border border-gray-300 rounded-lg pr-10 focus:outline-none"
           placeholder="Type a message..."
         />
         <button
           onClick={handleSendMessage}
-          className="absolute right-2 p-1 text-blue-500 hover:text-blue-700 focus:outline-none"
+          className="absolute right-2 p-1 text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none"
         >
           <IoMdSend size={20} />
         </button>
